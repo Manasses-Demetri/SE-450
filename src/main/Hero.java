@@ -1,23 +1,22 @@
 package main;
 
-public class Hero {
+public class Hero 
+{
+	 private String name;
 
-    private String name;
+	    public Hero(String name) 
+	    {
+	        this.name = name;
+	    }
 
-    public Hero(String name) 
-    {
-        this.name = name;
-    }
-
-    public String getName() 
-    {
-        return name;
-    }
-    
-    @Override
-    public String toString() 
-    {
-        return name;
-    }
-
+	    public String getName() 
+	    {
+	        return name;
+	    }
+	    
+	    @Override
+	    public String toString() 
+	    {
+	        return name;
+	    }
 }
