@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Draft {
 
-    private ArrayList<Hero> blueTeam;
-    private ArrayList<Hero> redTeam;
+    private ArrayList<IHero> blueTeam;
+    private ArrayList<IHero> redTeam;
 
     public Draft() 
     {
@@ -13,12 +13,12 @@ public class Draft {
         redTeam = new ArrayList<>();
     }
 
-    public void addBlueHero(Hero hero) 
+    public void addBlueHero(IHero hero) 
     {
         blueTeam.add(hero);
     }
 
-    public void addRedHero(Hero hero) 
+    public void addRedHero(IHero hero) 
     {
         redTeam.add(hero);
     }
@@ -28,20 +28,20 @@ public class Draft {
 
         System.out.println("\nBlue Team");
 
-        for (Hero hero : blueTeam) 
+        for (IHero hero : blueTeam) 
         {
             System.out.println("- " + hero);
         }
 
         System.out.println("\nRed Team");
 
-        for (Hero hero : redTeam) 
+        for (IHero hero : redTeam) 
         {
             System.out.println("- " + hero);
         }
     }
     
-    public boolean heroAlreadyPicked(Hero hero) 
+    public boolean heroAlreadyPicked(IHero hero) 
     {
         return blueTeam.contains(hero) || redTeam.contains(hero);
     }

@@ -8,6 +8,8 @@ public class Main
 
     public static void main(String[] args) 
     {
+    	HeroDatabase database = HeroDatabase.getInstance();
+    	ArrayList<IHeroCreator> heroes = new ArrayList<>(database.getHeroFactories());
 
         Scanner scanner = new Scanner(System.in);
 
@@ -26,27 +28,28 @@ public class Main
             {
 
                 case 1:
-                	Draft draft = new Draft();
+                	Draft draft = new Draft();               	
                 	
-                    ArrayList<Hero> heroes = HeroDatabase.getHeroes();
-                    
                 	while (!draft.draftComplete()) 
                 	{
                     	System.out.println("\nSelect a hero for Blue Team");
 
-                    	for (int i = 0; i < heroes.size(); i++) 
-                    	{
-                        	System.out.println((i + 1) + ". " + heroes.get(i));
+                    	for (int i = 0; i < heroes.size(); i++) {
+
+                    	    IHero hero = heroes.get(i).createHero();
+
+                    	    System.out.println((i + 1) + ". " + hero.getName());
+
                     	}
 
                     	int blue = scanner.nextInt();
                     
-                    	Hero blueHero = heroes.get(blue - 1);
+                    	IHero blueHero = heroes.get(blue - 1).createHero();
                     
                     	if (!draft.heroAlreadyPicked(blueHero)) 
                     	{
                         	draft.addBlueHero(blueHero);
-                        	heroes.remove(blueHero);
+                        	heroes.remove(blue - 1);
                     	}
                     
                     	System.out.println("\nSelect a hero for Red Team");
@@ -58,12 +61,12 @@ public class Main
 
                     	int red = scanner.nextInt();
 
-                    	Hero redHero = heroes.get(red - 1);
+                    	IHero redHero = heroes.get(red - 1).createHero();
                     
                     	if (!draft.heroAlreadyPicked(redHero)) 
                     	{
                         	draft.addRedHero(redHero);
-                        	heroes.remove(redHero);
+                        	heroes.remove(red - 1);
                     	}
 
                     	draft.displayTeams();
@@ -72,12 +75,13 @@ public class Main
                     break;
 
                 case 2:
-                	ArrayList<Hero> HeroList = HeroDatabase.getHeroes();
-                    for (Hero hero : HeroList) 
-                    {
-                        System.out.println(hero);
-                    }
+                	for (int i = 0; i < heroes.size(); i++) {
 
+                	    IHero hero = heroes.get(i).createHero();
+
+                	    System.out.println((i + 1) + ". " + hero.getName());
+
+                	}
                     break;
 
                 case 3:

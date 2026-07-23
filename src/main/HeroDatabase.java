@@ -4,12 +4,35 @@ import java.util.ArrayList;
 
 public class HeroDatabase {
 
-    public static ArrayList<Hero> getHeroes() 
-    {
+   
 
-        ArrayList<Hero> heroes = new ArrayList<>();
 
-        heroes.add(new Hero("Abrams"));
+        private static HeroDatabase instance;
+
+        private ArrayList<IHeroCreator> creators;
+
+        private HeroDatabase() 
+        {
+            creators = new ArrayList<>();
+            creators.add(new HazeCreator());
+        }
+
+        public static HeroDatabase getInstance() 
+        {
+            if (instance == null) 
+            {
+                instance = new HeroDatabase();
+            }
+
+            return instance;
+        }
+
+        public ArrayList<IHeroCreator> getHeroFactories() 
+        {
+            return creators;
+        }
+        
+        /*heroes.add(new Hero("Abrams"));
         heroes.add(new Hero("Apollo"));
         heroes.add(new Hero("Bebop"));
         heroes.add(new Hero("Billy"));
@@ -20,7 +43,7 @@ public class HeroDatabase {
         heroes.add(new Hero("Dynamo"));
         heroes.add(new Hero("Graves"));
         heroes.add(new Hero("Grey Talon"));
-        heroes.add(new Hero("Haze"));
+        creators.add(new HazeCreator());
         heroes.add(new Hero("Holliday"));
         heroes.add(new Hero("Infernus"));
         heroes.add(new Hero("Ivy"));
@@ -48,6 +71,6 @@ public class HeroDatabase {
         heroes.add(new Hero("Wraith"));
         heroes.add(new Hero("Yamato"));
 
-        return heroes;
-    }
+        */
+   
 }
